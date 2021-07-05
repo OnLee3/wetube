@@ -7,7 +7,7 @@
     "url": "git+https://github.com/OnLee3/wetube.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/init.js"
   },
   "author": "Leon",
   "license": "MIT",
