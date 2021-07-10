@@ -1,8 +1,10 @@
 import express from "express";
 import morgan from "morgan";
-import globalRouter from "./routers/globalRouter";
+import session from "express-session";
+import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
+import { localsMiddleware } from "./middlewares";
 
 console.log(process.cwd());
 
@@ -12,8 +14,22 @@ const logger = morgan("dev");
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
+//form의 value들을 이해할 수 있게 만듬.
 app.use(express.urlencoded({extended:true}));
-app.use("/", globalRouter);
+
+app.use(session({
+    secret : "Hello!",
+    resave:true,
+    saveUninitialized:true,
+}))
+
+app.get("/add-one",(req, res, next) => {
+    req.session.potato += 1;
+    return res.send(`${req.session.id}\n${req.session.potato}`)
+})
+
+app.use(localsMiddleware);
+app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
 
