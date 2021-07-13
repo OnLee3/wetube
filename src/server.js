@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
@@ -17,16 +18,15 @@ app.use(logger);
 //form의 value들을 이해할 수 있게 만듬.
 app.use(express.urlencoded({extended:true}));
 
-app.use(session({
-    secret : "Hello!",
-    resave:true,
-    saveUninitialized:true,
+app.use(
+    session({
+    secret : process.env.COOKIE_SECRET,
+    resave:false,
+    saveUninitialized:false,
+    store: MongoStore.create({
+        mongoUrl: process.env.DB_URL
+    })
 }))
-
-app.get("/add-one",(req, res, next) => {
-    req.session.potato += 1;
-    return res.send(`${req.session.id}\n${req.session.potato}`)
-})
 
 app.use(localsMiddleware);
 app.use("/", rootRouter);
