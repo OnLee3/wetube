@@ -139,58 +139,37 @@ export const finishGithubLogin = async(req,res) => {
                     session: {
                         user : {
                             _id,
+                            avatarUrl,
                             name : sessionName,
                             email : sessionEmail,
                             username : sessionUserName,
-                            location : sessionLocation,
                                 },
                             },
 
-                        body : {name, email, username, location}
+                        body : {name, email, username, location},
+                        file,
                     } = req;
-            //email validation
-            if (email !== sessionEmail){
-                const emailExists = await User.exists({email});
-                if(emailExists){
-                    return res.status(400).render("edit-profile", {pageTitle:"Edit Profile", errorMessage:"This email is already taken."})
-                };
-                const updatedUser = await User.findByIdAndUpdate(_id, {
-                    name:name, 
-                    email:email, 
-                    username:username, 
-                    location:location,
-                }, {new: true})
-                req.session.user = updatedUser;
-                return res.redirect("/users/edit");
-            }   
-            //username validation.
-                else if(username !== sessionUserName){
-                const userNameExists = await User.exists({username});
-                if(userNameExists){
-                    return res.status(400).render("edit-profile", {pageTitle:"Edit Profile", errorMessage:"This username is already taken."})
+                    if (name !== sessionName ||
+                        email !== sessionEmail ||
+                        username !== sessionUserName){
+                    const exists = await User.exists({$or: [{username},{email}]});
+                    if(exists){
+                        return res.status(400).render("edit-profile", {pageTitle:"Edit Profile", errorMessage:"This username/email is already taken."})
+                    };
+                    console.log(file);
+                    const updatedUser = await User.findByIdAndUpdate(_id, {
+                        avatarUrl: file ? file.path : avatarUrl,
+                        name:name, 
+                        email:email, 
+                        username:username, 
+                        location:location,
+                    }, {new: true})
+                    req.session.user = updatedUser;
+                    return res.redirect("/users/edit");
+                } else {
+                    return res.redirect("/");
                 }
-                const updatedUser = await User.findByIdAndUpdate(_id, {
-                    name:name, 
-                    email:email, 
-                    username:username, 
-                    location:location,
-                }, {new: true})
-                req.session.user = updatedUser;
-                return res.redirect("/users/edit");
             }
-            //name, location check. 중복되도 상관 없음    
-            else if( name !== sessionName ||
-                location !== sessionLocation){
-                const updatedUser = await User.findByIdAndUpdate(_id, {
-                    name:name, 
-                    location:location,
-                }, {new: true})
-                req.session.user = updatedUser;
-                return res.redirect("/users/edit");
-            } else {
-                return res.redirect("/");
-            }
-        }
 
 export const getChangePassword = (req, res) => {
     if(req.session.user.socialOnly === true){
