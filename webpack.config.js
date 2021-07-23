@@ -23,7 +23,8 @@ module.exports = {
                         presets: [["@babel/preset-env", { targets: "defaults"}]]
                     }
                 }
-            },{
+            },
+            {
                 test: /\.scss$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             }
