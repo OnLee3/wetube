@@ -200,11 +200,70 @@ footer {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.serach__form {
-  display: flex;
-  flex-direction: column;
+.auth-switch {
+  text-align: center;
+  margin-top: 40px;
+}
+.auth-switch a {
+  text-decoration: underline;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+form {
   max-width: 420px;
   margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+input {
+  all: unset;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: black;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: white;
+  width: 90%;
+}
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+input[type=submit],
+.social__btn {
+  border-radius: 5px;
+  padding: 12px 20px;
+  background-color: white;
+  color: #ff1300;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+}
+
+.social-login {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+  margin-top: 30px;
+}
+.social-login .social__btn--github {
+  background-color: transparent;
+  color: azure;
+}
+
+.serach__form {
+  margin-bottom: 60px;
+  display: flex;
+  position: relative;
+  align-items: center;
 }
 .serach__form input {
   all: unset;
@@ -215,11 +274,47 @@ footer {
   margin-bottom: 5px;
   font-size: 16px;
   color: white;
+  width: 90%;
 }
-.serach__form input[type=submit] {
-  background-color: rgba(0, 0, 0, 0.3);
+.serach__form button {
+  all: unset;
+}
+.serach__form button {
+  position: absolute;
+  right: 15px;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0);
   text-align: center;
-  padding: 10px;
+  cursor: pointer;
+}
+
+.profile__data {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.profile__data img {
+  margin-bottom: 10px;
+}
+.profile__data h3 {
+  font-size: 18px;
+}
+
+.edit-profile__form label {
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.edit-profile__password {
+  margin-top: 50px;
+  text-align: center;
+}
+.edit-profile__password a {
+  text-decoration: underline;
 }
 
 a {

@@ -141,23 +141,17 @@ export const finishGithubLogin = async(req,res) => {
                         user : {
                             _id,
                             avatarUrl,
-                            name : sessionName,
-                            email : sessionEmail,
-                            username : sessionUserName,
                                 },
                             },
 
                         body : {name, email, username, location},
                         file,
                     } = req;
-                    if (name !== sessionName ||
-                        email !== sessionEmail ||
-                        username !== sessionUserName){
+                    /* 같은 username, email 검증부분
                     const exists = await User.exists({$or: [{username},{email}]});
                     if(exists){
                         return res.status(400).render("edit-profile", {pageTitle:"Edit Profile", errorMessage:"This username/email is already taken."})
-                    };
-                    console.log(file);
+                    };*/
                     const updatedUser = await User.findByIdAndUpdate(_id, {
                         avatarUrl: file ? file.path : avatarUrl,
                         name:name, 
@@ -167,9 +161,6 @@ export const finishGithubLogin = async(req,res) => {
                     }, {new: true})
                     req.session.user = updatedUser;
                     return res.redirect("/users/edit");
-                } else {
-                    return res.redirect("/");
-                }
             }
 
 export const getChangePassword = (req, res) => {
