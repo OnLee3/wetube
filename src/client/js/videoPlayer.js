@@ -104,7 +104,6 @@ const handleSpaceBar = (e) => {
 
 const handleEnded = () => {
     const {id} = videoContainer.dataset;
-    console.log(id)
     fetch(`/api/videos/${id}/view`, {
         method: "POST",
     });
