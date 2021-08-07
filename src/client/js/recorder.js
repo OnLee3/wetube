@@ -8,7 +8,7 @@ let videoFile;
 const handleDownload = () => {
     const a = document.createElement("a");
     a.href = videoFile;
-    // URL로 가는 대신, 다운로드하게 만들어줌
+    // URL로 가는 대신, 해당 URL을 다운로드하게 만들어줌
     a.download = "MyRecording.webm"
     document.body.appendChild(a);
     a.click();
@@ -28,8 +28,9 @@ const handleStart = () => {
     startBtn.addEventListener("click", handleStop);
 
     recorder = new MediaRecorder(stream);
+    // recorder.stop()하면 실행하는 내용
     recorder.ondataavailable = (event) => {
-        // 브라우저 메모리에서만 가능한 URL을 만들어줌
+        // 브라우저 메모리에서만 사용 가능한 URL을 만들어줌
         videoFile = URL.createObjectURL(event.data)
         video.srcObject = null;
         video.src = videoFile;
