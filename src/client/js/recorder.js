@@ -17,11 +17,20 @@ const handleDownload = async () => {
     ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile))
 
     await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4")
+    
+    // Uint8Array : unsigned integer : 양의정수
+    const mp4File = ffmpeg.FS("readFile", "output.mp4");
+
+    // binary data를 사용하려면 buffer를 사용해야함.
+    console.log(mp4File);
+    const mp4Blob = new Blob([mp4File.buffer], {type:"video/mp4"})
+
+    const mp4Url = URL.createObjectURL(mp4Blob);
 
     const a = document.createElement("a");
-    a.href = videoFile;
+    a.href = mp4Url;
     // URL로 가는 대신, 해당 URL을 다운로드하게 만들어줌
-    a.download = "MyRecording.webm"
+    a.download = "MyRecording.mp4"
     document.body.appendChild(a);
     a.click();
 }
