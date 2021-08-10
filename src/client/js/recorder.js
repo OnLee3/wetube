@@ -17,15 +17,23 @@ const handleDownload = async () => {
     ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile))
 
     await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4")
+
+    // "-ss", "00:00:00" : 해당 순간으로 갈 수 있게함
+    // "-frames:v", "1" : 이동한 시간의 스크린샷 한장을 찍음
+    await ffmpeg.run("-i", "recording.webm", "-ss", "00:00:01", "-frames:v", "1", "thumbnail.jpg")
     
     // Uint8Array : unsigned integer : 양의정수
     const mp4File = ffmpeg.FS("readFile", "output.mp4");
+    const thumbFile = ffmpeg.FS("readFile", "thumbnail.jpg")
 
     // binary data를 사용하려면 buffer를 사용해야함.
     console.log(mp4File);
     const mp4Blob = new Blob([mp4File.buffer], {type:"video/mp4"})
+    const thumbBlob = new Blob([thumbFile.buffer], {type:"image/jpg"})
 
+    // blob URL은, url을 통해서 파일에 접근하는 방법
     const mp4Url = URL.createObjectURL(mp4Blob);
+    const thumbUrl = URL.createObjectURL(thumbBlob);
 
     const a = document.createElement("a");
     a.href = mp4Url;
@@ -33,6 +41,12 @@ const handleDownload = async () => {
     a.download = "MyRecording.mp4"
     document.body.appendChild(a);
     a.click();
+
+    const thumbA = document.createElement("a");
+    thumbA.href = thumbUrl;
+    thumbA.download = "MyThumbnail.jpg"
+    document.body.appendChild(thumbA);
+    thumbA.click();
 }
 
 const handleStop = () => {
