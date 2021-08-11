@@ -22,7 +22,7 @@ const handleDownload = async () => {
     // "-frames:v", "1" : 이동한 시간의 스크린샷 한장을 찍음
     await ffmpeg.run("-i", "recording.webm", "-ss", "00:00:01", "-frames:v", "1", "thumbnail.jpg")
     
-    // Uint8Array : unsigned integer : 양의정수
+    // return 값 => Uint8Array : unsigned integer : 양의정수
     const mp4File = ffmpeg.FS("readFile", "output.mp4");
     const thumbFile = ffmpeg.FS("readFile", "thumbnail.jpg")
 
@@ -47,6 +47,15 @@ const handleDownload = async () => {
     thumbA.download = "MyThumbnail.jpg"
     document.body.appendChild(thumbA);
     thumbA.click();
+
+    // 다운로드가 완료되면, 필요없는 URL들을 지워줌으로써 브라우저가 더 빨라짐
+    ffmpeg.FS("unlink", "recording.webm");
+    ffmpeg.FS("unlink", "output.mp4");
+    ffmpeg.FS("unlink", "thumbnail.jpg");
+    
+    URL.revokeObjectURL(mp4Url);
+    URL.revokeObjectURL(thumbUrl);
+    URL.revokeObjectURL(videoFile);
 }
 
 const handleStop = () => {
