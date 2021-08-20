@@ -38,4 +38,5 @@ block content
 
 block scripts 
     script(src="/assets/js/videoPlayer.js") 
-    script(src="/assets/js/commentSection.js") 
+    if loggedIn 
+        script(src="/assets/js/commentSection.js") 
