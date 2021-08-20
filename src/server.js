@@ -19,6 +19,7 @@ app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 //form의 value들을 이해할 수 있게 만듬.
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 app.use(
     session({
