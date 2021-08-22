@@ -1,5 +1,6 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
+const deleteBtn = document.querySelectorAll(".deleteBtn");
 
 const addComment = (text, id) => {
     const videoComments = document.querySelector(".video__comments ul");
@@ -17,8 +18,10 @@ const addComment = (text, id) => {
     newComment.appendChild(span2);
     // prepend() : element를 맨 위에 추가
     videoComments.prepend(newComment);
+    span2.addEventListener("click",handleDelete);
 }
 
+const deleteComment = (target) => target.remove()
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,4 +45,19 @@ const handleSubmit = async (e) => {
     }
 }
 
+const handleDelete = async (event) => {
+    const targetComment = event.target.parentNode;
+    const commentId = targetComment.dataset.id
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method : "DELETE"
+    });
+    if(response.status === 200) deleteComment(targetComment);
+}
+
+
 if(form) form.addEventListener("submit", handleSubmit);
+if(deleteBtn){
+for(let i = 0; i < deleteBtn.length; i++){
+    deleteBtn[i].addEventListener("click", handleDelete)
+    }
+}

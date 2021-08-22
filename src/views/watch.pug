@@ -19,7 +19,7 @@ block content
             div 
                 span#fullScreen
                     i.fas.fa-expand
-    //-
+
         div
             p=video.description
             small=video.createdAt
@@ -30,6 +30,7 @@ block content
             a(href=`${video.id}/edit`) Edit Video &rarr;
             br
             a(href=`${video.id}/delete`) Delete Video &rarr;
+
     if loggedIn
         div.video__add-comments 
             form.video__comment-form#commentForm
@@ -38,10 +39,15 @@ block content
     div.video__comments
         ul 
             each comment in video.comments.reverse()
-                li.video__comment(data-id=comment.id)
-                    i.fas.fa-comment
-                    span  #{comment.text}
-                    span  ❌
+                if String(comment.owner._id) === String(loggedInUser._id)
+                    li.video__comment(data-id=comment.id)
+                        i.fas.fa-comment
+                        span  #{comment.text}
+                        span.deleteBtn  ❌
+                else
+                    li.video__comment(data-id=comment.id)
+                        i.fas.fa-comment
+                        span  #{comment.text}
 
 block scripts 
     script(src="/assets/js/videoPlayer.js") 
