@@ -398,6 +398,12 @@ input[type=submit]:disabled,
   margin-bottom: 10px;
 }
 
+.video__description {
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+}
+
 .video__comments {
   display: flex;
   flex-direction: column;
@@ -412,6 +418,23 @@ input[type=submit]:disabled,
   background-color: white;
   color: black;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.video__add-comments #commentForm {
+  background-color: #191919;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.video__add-comments #commentForm textarea {
+  text-align: center;
+}
+.video__add-comments #commentForm button {
+  padding: 8px;
 }
 
 a {
