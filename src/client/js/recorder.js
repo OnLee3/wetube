@@ -46,8 +46,7 @@ const handleDownload = async () => {
     const mp4File = ffmpeg.FS("readFile", files.output);
     const thumbFile = ffmpeg.FS("readFile", files.thumb)
 
-    // binary data를 사용하려면 buffer를 사용해야함.
-    console.log(mp4File);
+    // binary data를 사용하려면 buffer를 사용해야함
     const mp4Blob = new Blob([mp4File.buffer], {type:"video/mp4"})
     const thumbBlob = new Blob([thumbFile.buffer], {type:"image/jpg"})
 
@@ -83,7 +82,6 @@ const handleStart = () => {
     recorder.ondataavailable = (event) => {
         // 브라우저 메모리에서만 사용 가능한 URL을 만들어줌
         videoFile = URL.createObjectURL(event.data)
-        console.log(videoFile);
         video.srcObject = null;
         video.src = videoFile;
         video.loop = true;

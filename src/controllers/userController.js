@@ -5,7 +5,6 @@ import bcrypt from "bcrypt"
 
 export const getJoin = (req, res) => res.render("Join", {pageTitle: "Join"});
 export const postJoin = async(req, res) => {
-    console.log(req.body);
     const {email, username, password, password2, name, location} = req.body;
     const pageTitle = "Join";
     if(password !== password2){
@@ -94,7 +93,6 @@ export const finishGithubLogin = async(req,res) => {
                     Authorization: `token ${access_token}`
                 }
             })).json();
-            console.log(userData);
             const emailData = await (
                 await fetch(`${apiUrl}/user/emails`, {
                     headers:{
@@ -102,7 +100,6 @@ export const finishGithubLogin = async(req,res) => {
                     }
                 })
                 ).json();
-                console.log(emailData);
                 const emailObj = emailData.find(email => email.primary === true && email.verified ===  true
                     );
                     if(!emailObj){
@@ -206,7 +203,6 @@ export const see = async(req, res) => {
             model: "User",
         },
     });
-    console.log(user);
     if(!user){
         return res.status(404).render("404", {pageTitle:"User not found."});
     }
