@@ -149,8 +149,9 @@ export const finishGithubLogin = async(req,res) => {
                     if(exists){
                         return res.status(400).render("edit-profile", {pageTitle:"Edit Profile", errorMessage:"This username/email is already taken."})
                     };*/
+                    console.log(file);
                     const updatedUser = await User.findByIdAndUpdate(_id, {
-                        avatarUrl: file ? file.path : avatarUrl,
+                        avatarUrl: file ? file.location : avatarUrl,
                         name:name, 
                         email:email, 
                         username:username, 
