@@ -33,6 +33,10 @@ app.use(flash());
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"))
 app.use("/assets", express.static("assets"))
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+})
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
