@@ -157,9 +157,8 @@ export const finishGithubLogin = async(req,res) => {
                         return res.status(400).render("edit-profile", {pageTitle:"Edit Profile", errorMessage:"This username/email is already taken."})
                     };*/
                     console.log(file);
-                    const isHeroku = process.env.NODE_ENV === "production"
                     const updatedUser = await User.findByIdAndUpdate(_id, {
-                        avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
+                        avatarUrl: file ? (res.locals.isHeroku ? file.location : file.path) : avatarUrl,
                         name:name, 
                         email:email, 
                         username:username, 
