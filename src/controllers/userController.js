@@ -3,7 +3,14 @@ import Video from "../models/Video"
 import fetch from "node-fetch"
 import bcrypt from "bcrypt"
 
-export const getJoin = (req, res) => res.render("Join", {pageTitle: "Join"});
+export const getJoin = (req, res) => {
+    try{
+    res.render("Join", {pageTitle: "Join"});
+    }
+    catch(error){
+        console.log(error);
+    }
+}
 export const postJoin = async(req, res) => {
     const {email, username, password, password2, name, location} = req.body;
     const pageTitle = "Join";
