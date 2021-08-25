@@ -22,7 +22,7 @@ header
                                 if isHeroku
                                     img.header__avatar(src=loggedInUser.avatarUrl,crossorigin)
                                 else 
-                                    img.header__avatar(src="/" + loggedInUser.avatarUrl, crossorigin)
+                                    img.header__avatar(src="/" + loggedInUser.avatarUrl)
             else
                 li 
                     a(href="/login") LogIn
