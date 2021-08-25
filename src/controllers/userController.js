@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 
 export const getJoin = (req, res) => {
     try{
-    res.render("Join", {pageTitle: "Join"});
+    res.render("join", {pageTitle: "Join"});
     }
     catch(error){
         console.log(error);
