@@ -2,10 +2,6 @@ extends base.pug
 include mixins/video
 
 block content 
-    form(method="GET").serach__form
-        input(placeholder="Search by title",name="keyword" type="text")
-        button
-            i.fas.fa-search
     div.video-grid
         each video in videos 
             +video(video)

@@ -1,35 +1,63 @@
 header {
-  padding: 20px 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .header__logo {
-    color: $red;
-    font-size: 38px;
-  }
-  ul {
+  nav {
+    padding: 20px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    li {
+    .header__logo {
+      color: $red;
+      font-size: 38px;
+    }
+    .serach__form {
+      display: flex;
+      padding: 0;
+      align-items: center;
+      background-color: $bg;
       margin-left: 30px;
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
+      position: relative;
+      input.search__input {
+        width: 1000px;
+        all: unset;
+        padding: 15px 20px;
+        border-radius: 20px;
+        background-color: $bg2;
+        font-size: 16px;
+        &::placeholder {
+          color: $text;
+        }
+      }
+
+      button {
+        all: unset;
+        position: absolute;
+        right: 15px;
+        font-size: 18px;
+        text-align: center;
+        cursor: pointer;
+      }
     }
-    i {
-      font-size: 16px;
+
+    ul {
+      display: flex;
+      align-items: center;
+      li {
+        margin-left: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
     }
-  }
-  .header__btn {
-    background-color: white;
-    color: $bg;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  .header__avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+
+    .header__btn {
+      background-color: $bg2;
+      color: $text;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .header__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
   }
 }

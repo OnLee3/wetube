@@ -132,37 +132,116 @@ table {
   border-spacing: 0;
 }
 
-header {
+form {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #efefef;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+form label {
+  display: flex;
+  padding: 15px 20px;
+  background-color: #cfcfcf;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+input:not(input[type=range]),
+input:not(input.search__input),
+input[type=sumbit] {
+  all: unset;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  font-size: 16px;
+  width: 90%;
+}
+input:not(input[type=range])::placeholder,
+input:not(input.search__input)::placeholder,
+input[type=sumbit]::placeholder {
+  color: #1d1d1d 0.7;
+}
+
+input[type=submit],
+.social__btn {
+  border-radius: 5px;
+  padding: 12px 20px;
+  background-color: #cfcfcf !important;
+  color: #ff1300 !important;
+  text-align: center !important;
+  cursor: pointer;
+  display: block;
+  border: none;
+}
+input[type=submit]:focus,
+.social__btn:focus {
+  outline: none;
+}
+input[type=submit]:disabled,
+.social__btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+header nav {
   padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-header .header__logo {
+header nav .header__logo {
   color: #ff1300;
   font-size: 38px;
 }
-header ul {
+header nav .serach__form {
   display: flex;
-  justify-content: space-between;
+  padding: 0;
+  align-items: center;
+  background-color: #ffffff;
+  margin-left: 30px;
+  position: relative;
+}
+header nav .serach__form input.search__input {
+  width: 1000px;
+  all: unset;
+  padding: 15px 20px;
+  border-radius: 20px;
+  background-color: #efefef;
+  font-size: 16px;
+}
+header nav .serach__form input.search__input::placeholder {
+  color: #1d1d1d;
+}
+header nav .serach__form button {
+  all: unset;
+  position: absolute;
+  right: 15px;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+}
+header nav ul {
+  display: flex;
   align-items: center;
 }
-header ul li {
+header nav ul li {
   margin-left: 30px;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
-header ul i {
-  font-size: 16px;
-}
-header .header__btn {
-  background-color: white;
-  color: #191919;
+header nav .header__btn {
+  background-color: #efefef;
+  color: #1d1d1d;
   padding: 5px 10px;
   border-radius: 5px;
 }
-header .header__avatar {
+header nav .header__avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -219,53 +298,6 @@ footer {
   border-radius: 50%;
 }
 
-form {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-input:not(input[type=range]),
-input[type=sumbit] {
-  all: unset;
-  padding: 15px 20px;
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: black;
-  margin-bottom: 5px;
-  font-size: 16px;
-  color: white;
-  width: 90%;
-}
-input:not(input[type=range])::placeholder,
-input[type=sumbit]::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-input[type=submit],
-.social__btn {
-  border-radius: 5px;
-  padding: 12px 20px;
-  background-color: white !important;
-  color: #ff1300 !important;
-  text-align: center !important;
-  cursor: pointer;
-  display: block;
-  border: none;
-}
-input[type=submit]:focus,
-.social__btn:focus {
-  outline: none;
-}
-input[type=submit]:disabled,
-.social__btn:disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 .social-login {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 40px;
@@ -287,7 +319,7 @@ input[type=submit]:disabled,
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   position: absolute;
-  background-color: #0f0d16;
+  background-color: #efefef;
   width: 95%;
   display: grid;
   gap: 15px;
@@ -324,35 +356,6 @@ input[type=submit]:disabled,
 }
 #videoContainer .videoControls .videoControls__volume span i {
   font-size: 18px;
-}
-
-.serach__form {
-  margin-bottom: 60px;
-  display: flex;
-  position: relative;
-  align-items: center;
-}
-.serach__form input {
-  all: unset;
-  padding: 15px 20px;
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: black;
-  margin-bottom: 5px;
-  font-size: 16px;
-  color: white;
-  width: 90%;
-}
-.serach__form button {
-  all: unset;
-}
-.serach__form button {
-  position: absolute;
-  right: 15px;
-  font-size: 18px;
-  background-color: rgba(0, 0, 0, 0);
-  text-align: center;
-  cursor: pointer;
 }
 
 .profile__data {
@@ -415,7 +418,7 @@ input[type=submit]:disabled,
 .video__comments .video__comment {
   padding: 10px;
   border-radius: 999px;
-  background-color: white;
+  background-color: #efefef;
   color: black;
   margin-bottom: 10px;
   display: flex;
@@ -423,7 +426,7 @@ input[type=submit]:disabled,
 }
 
 .video__add-comments #commentForm {
-  background-color: #191919;
+  background-color: #ffffff;
   border: none;
   display: flex;
   justify-content: center;
@@ -444,8 +447,8 @@ a {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #191919;
-  color: white;
+  background-color: #ffffff;
+  color: #1d1d1d;
 }
 
 main {

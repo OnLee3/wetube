@@ -8,8 +8,7 @@ block content
             h3=user.name
         else 
             img(src="/" + user.avatarUrl).avatar
-            h3=user.name
-            
+            h3=user.name            
     div.video-grid
         each video in user.videos 
             +video(video)
