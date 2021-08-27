@@ -49,3 +49,16 @@ input[type="submit"],
     pointer-events: none;
   }
 }
+
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  background-color: black;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 5px;
+  cursor: ew-resize;
+  border-radius: 10px;
+  box-shadow: 0 0 0 5px $bg3;
+}

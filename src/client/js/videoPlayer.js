@@ -91,11 +91,11 @@ const handleMouseMove = () => {
         controlsMovementTimeout = null;
     }
     videoControls.classList.add("showing");
-    controlsMovementTimeout = setTimeout(hideControls, 2000)
+    controlsMovementTimeout = setTimeout(hideControls, 3000)
 }
 
 const handleMouseLeave = () => {
-    controlsTimeout = setTimeout(hideControls, 2000)
+    controlsTimeout = setTimeout(hideControls, 3000)
 }
 
 const handleSpaceBar = (e) => {

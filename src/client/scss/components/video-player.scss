@@ -24,6 +24,10 @@
     margin: 0 auto;
     padding: 10px;
     box-sizing: border-box;
+
+    input {
+      border-radius: 50px;
+    }
     .videoControls__play {
       display: flex;
       justify-content: space-around;
@@ -43,6 +47,11 @@
         i {
           font-size: 18px;
         }
+      }
+    }
+    .videoControls__full {
+      span {
+        margin-right: 10px;
       }
     }
   }
