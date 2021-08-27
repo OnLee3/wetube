@@ -24,9 +24,10 @@ block content
                     i.fas.fa-expand
     div.video__description
         div
-            p #{video.description}
-            small=video.createdAt
-        div
+            p.video__title #{video.description}
+            //- small=video.createdAt
+            hr.solid
+        div.video__owner
             small Uploaded by 
                 a(href=`/users/${video.owner._id}`)=video.owner.name
         if String(video.owner._id) === String(loggedInUser._id)
@@ -50,6 +51,7 @@ block content
                     li.video__comment(data-id=comment.id)
                         i.fas.fa-comment
                         span  #{comment.text}
+                        span 
 
 block scripts 
     script(src="/assets/js/videoPlayer.js") 
