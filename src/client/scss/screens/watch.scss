@@ -11,6 +11,19 @@
   }
 }
 
+.video__owner {
+  margin-top: 10px;
+  a {
+    display: flex;
+    align-items: center;
+    .owner__name {
+      margin-left: 10px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
 .video__comments {
   display: flex;
   flex-direction: column;

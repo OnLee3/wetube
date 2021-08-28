@@ -28,8 +28,13 @@ block content
             //- small=video.createdAt
             hr.solid
         div.video__owner
-            small Uploaded by 
-                a(href=`/users/${video.owner._id}`)=video.owner.name
+            a(href=`/users/${video.owner._id}`)
+                if isHeroku
+                    img.avatar__small(src=video.owner.avatarUrl)
+                    small.owner__name=video.owner.name
+                else
+                    img.avatar__small(src="/" + video.owner.avatarUrl)
+                    small.owner__name=video.owner.name
         if String(video.owner._id) === String(loggedInUser._id)
             br
             a(href=`${video.id}/edit`) Edit Video &rarr;

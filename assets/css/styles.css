@@ -255,11 +255,6 @@ header nav .header__btn {
   padding: 5px 10px;
   border-radius: 5px;
 }
-header nav .header__avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
 
 footer {
   text-align: center;
@@ -309,6 +304,12 @@ footer {
 .avatar {
   width: 150px;
   height: 150px;
+  border-radius: 50%;
+}
+
+.avatar__small {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
@@ -432,6 +433,19 @@ footer {
 }
 .video__description .solid {
   border-top: 0.5px solid #efefef;
+}
+
+.video__owner {
+  margin-top: 10px;
+}
+.video__owner a {
+  display: flex;
+  align-items: center;
+}
+.video__owner a .owner__name {
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .video__comments {
