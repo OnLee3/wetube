@@ -151,6 +151,7 @@ form label {
 
 input:not(input[type=range]),
 input:not(input.search__input),
+input:not(input.video__comment-input),
 input[type=sumbit] {
   all: unset;
   padding: 15px 20px;
@@ -163,6 +164,7 @@ input[type=sumbit] {
 }
 input:not(input[type=range])::placeholder,
 input:not(input.search__input)::placeholder,
+input:not(input.video__comment-input)::placeholder,
 input[type=sumbit]::placeholder {
   color: #1d1d1d 0.7;
 }
@@ -200,6 +202,24 @@ input[type=range]::-webkit-slider-thumb {
   cursor: ew-resize;
   border-radius: 10px;
   box-shadow: 0 0 0 5px #cfcfcf;
+}
+
+.video__add-comments #commentForm {
+  background-color: #cfcfcf;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+}
+.video__add-comments #commentForm .video__comment-input {
+  width: 100%;
+  margin: 0;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+}
+.video__add-comments #commentForm .video__comment-input::placeholder {
+  font-size: 14px;
 }
 
 header nav {
@@ -422,17 +442,24 @@ footer {
   margin-bottom: 10px;
 }
 
-.video__description {
+.video__info {
   display: flex;
   flex-direction: column;
 }
-.video__description .video__title {
+.video__info .video__title {
   font-size: 24px;
   font-weight: 600;
   padding: 20px 0px;
 }
-.video__description .solid {
-  border-top: 0.5px solid #efefef;
+.video__info .solid {
+  border-top: 0.05px solid #efefef;
+}
+.video__info .video__description {
+  padding: 20px 0px;
+}
+.video__info .video__createdAt {
+  opacity: 0.7;
+  font-size: 16px;
 }
 
 .video__owner {
@@ -444,7 +471,7 @@ footer {
 }
 .video__owner a .owner__name {
   margin-left: 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -464,21 +491,6 @@ footer {
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
-}
-
-.video__add-comments #commentForm {
-  background-color: #ffffff;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.video__add-comments #commentForm textarea {
-  text-align: center;
-}
-.video__add-comments #commentForm button {
-  padding: 8px;
 }
 
 a {

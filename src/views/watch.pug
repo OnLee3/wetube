@@ -22,11 +22,11 @@ block content
             div.videoControls__full 
                 span#fullScreen
                     i.fas.fa-expand
-    div.video__description
-        div
-            p.video__title #{video.description}
-            //- small=video.createdAt
-            hr.solid
+    div.video__info
+        div.video__titleInfo
+            h1.video__title #{video.title}
+            small.video__createdAt=String(video.createdAt).substr(0, 15)
+                hr.solid
         div.video__owner
             a(href=`/users/${video.owner._id}`)
                 if isHeroku
@@ -35,15 +35,12 @@ block content
                 else
                     img.avatar__small(src="/" + video.owner.avatarUrl)
                     small.owner__name=video.owner.name
-        if String(video.owner._id) === String(loggedInUser._id)
-            br
-            a(href=`${video.id}/edit`) Edit Video &rarr;
-            a(href=`${video.id}/delete`) Delete Video &rarr;
+        div.video__description
+            small=video.description
     if loggedIn
         div.video__add-comments 
             form.video__comment-form#commentForm
-                textarea(placeholder="Comment here")
-                button.far.fa-paper-plane.fa-lg
+                input.video__comment-input(type="text",placeholder="Comment & Press 'Enter'")
     div.video__comments
         ul 
             each comment in video.comments.reverse()
@@ -58,6 +55,10 @@ block content
                         span  #{comment.text}
                         span 
 
+    if String(video.owner._id) === String(loggedInUser._id)
+        br
+        a(href=`${video.id}/edit`) Edit |
+        a(href=`${video.id}/delete`)  Delete
 block scripts 
     script(src="/assets/js/videoPlayer.js") 
     if loggedIn 

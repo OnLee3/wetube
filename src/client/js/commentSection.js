@@ -25,7 +25,7 @@ const deleteComment = (target) => target.remove()
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    const textarea = form.querySelector("textarea");
+    const textarea = form.querySelector(".video__comment-input");
     const text = textarea.value;
     const videoId = videoContainer.dataset.id;
     // fetch : URL 변경없이, JS로 request를 보낼 수 있게함

@@ -10,7 +10,12 @@ export const home = async(req, res) => {
 
 export const watch = async (req, res) => {
     const { id } = req.params;
-    const video = await Video.findById(id).populate("owner").populate("comments");
+    const video = await Video.findById(id).populate("owner").populate("comments")
+    // const comments = video.comments;
+    // for (let x of comments) {
+    //     const commentOwner = await User.findById(x.owner);
+    //     console.log(commentOwner);
+    // }
     if(video === null){    
         return res.status(404).rsender("404", {pageTitle : 'Video not found.'});
     }
