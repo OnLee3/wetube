@@ -1,16 +1,3 @@
-# Wetube Reloaded
-
-/ -> Home
-/join -> Join
-/login -> Login
-/search -> Search
-
-/users/:id -> See User
-/users/logout -> Log Out
-/users/edit -> Edit MY Profile
-/users/delete -> Delete MY Profile
-
-/videos/:id -> See Video
-/videos/:id/edit -> Edit Video
-/videos/:id/delete -> Delete Video
-/videos/upload -> Upload Video
+- 💡 NodeJS, express, mongoDB 그리고 Herokuapp, AWS를 거쳐 배포까지 해보는 프로젝트 입니다.
+- 주요 구현한 기능은 회원가입 및 로그인, 비디오 녹화 및 업로드 기능입니다.
+- [블로그 정리 내용](https://leon.oopy.io/31b9c037-28c3-4f34-bcea-1b8d7ffa4eca)
